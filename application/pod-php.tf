@@ -18,7 +18,7 @@ resource "kubernetes_deployment_v1" "soat_php_pagamento" {
       spec {
         container {
           name  = "soat-php-pagamento"
-          image = "wllsistemas/php_lab:fase4-teste-pagamento-php1"
+          image = "wllsistemas/php_lab_fase4:pagamento-v1"
           port {
             container_port = 9000
           }

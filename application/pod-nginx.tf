@@ -18,7 +18,7 @@ resource "kubernetes_deployment_v1" "soat_nginx_pagamento" {
       spec {
         container {
           name  = "soat-nginx-pagamento"
-          image = "wllsistemas/php_lab_nginx:fase4-teste-pagamento-nginx2"
+          image = "wllsistemas/nginx_lab_fase4:pagamento-v1"
           port {
             container_port = 80
           }
