@@ -1,0 +1,19 @@
+.idea
+backend/var
+
+# Local .terraform directories
+.terraform/
+ **/.terraform/*
+
+#  Ignore variables files
+ *.auto.tfvars
+
+#  Ignore override files
+ *.tfoverride
+
+#  Ignore environment-specific files
+ .envrc
+
+#  Ignore CLI configuration files
+ .terraformrc
+ terraform.rc
