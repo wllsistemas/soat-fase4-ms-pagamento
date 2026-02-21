@@ -49,52 +49,7 @@ resource "kubernetes_deployment_v1" "soat_php_pagamento" {
               }
             }
           }
-          env {
-            name = "DB_HOST"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_HOST"
-              }
-            }
-          }
-          env {
-            name = "DB_NAME"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_NAME"
-              }
-            }
-          }
-          env {
-            name = "DB_PASSWORD"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_PASSWORD"
-              }
-            }
-          }
-          env {
-            name = "DB_USERNAME"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_USERNAME"
-              }
-            }
-          }
-          env {
-            name = "DB_PORT"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_PORT"
-              }
-            }
-          }
-
+        
           # Datadog APM (dd-trace-php)
           env {
             name = "DD_AGENT_HOST"
