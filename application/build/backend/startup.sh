@@ -36,11 +36,8 @@ php artisan migrate:fresh --force || {
     exit 1
 }
 
-echo "🌱 Executando seeders"
-php artisan db:seed || {
-    echo "❌ Falha na execução dos seeders"
-    exit 1
-}
+echo "Preparando filas"
+php artisan app:saga &   # & = background, não bloqueia
 
 echo "🚀 Iniciando o container"
 
