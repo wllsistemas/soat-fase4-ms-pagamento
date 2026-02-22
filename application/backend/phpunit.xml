@@ -9,6 +9,7 @@
                   lowUpperBound="50"
                   highLowerBound="80" />
             <text outputFile="var/coverage.txt" />
+          <clover outputFile="var/coverage.xml"/>
         </report>
     </coverage>
     <testsuites>
@@ -23,6 +24,14 @@
         <include>
             <directory>app</directory>
         </include>
+        <exclude>
+            <file>app/Http/Authentication.php</file>
+            <file>app/Http/Middleware/JsonWebTokenMiddleware.php</file>
+            <file>app/Infrastructure/Service/LaravelAuthService.php</file>
+            <file>app/Infrastructure/Dto/AuthenticatedDto.php</file>
+            <directory>app/Console</directory>
+            <directory>app/Jobs</directory>
+        </exclude>
     </source>
     <php>
         <env name="APP_ENV"
@@ -34,7 +43,9 @@
         <env name="CACHE_STORE"
              value="array" />
         <env name="DB_CONNECTION"
-             value="pgsql" />
+             value="sqlite" />
+        <env name="DB_DATABASE"
+             value=":memory:" />
         <env name="MAIL_MAILER"
              value="array" />
         <env name="QUEUE_CONNECTION"

@@ -10,57 +10,57 @@ permissions:
   contents: read
 
 jobs:
-  # run_tests:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Setup PHP
-  #       uses: shivammathur/setup-php@v2
-  #       with:
-  #         php-version: "8.4"
-  #         extensions: mbstring, pdo_mysql, dom, filter, gd, iconv, json, simplexml
-  #         ini-values: post_max_size=256M, upload_max_filesize=256M
-  #         coverage: pcov
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: mbstring, pdo_mysql, dom, filter, gd, iconv, json, simplexml
+          ini-values: post_max_size=256M, upload_max_filesize=256M
+          coverage: pcov
 
-  #     - name: Lendo diretório de cache do Composer
-  #       id: composer-cache
-  #       working-directory: ./application/backend
-  #       run: echo "COMPOSER_CACHE_DIR=$(composer config cache-dir)" >> $GITHUB_ENV
+      - name: Lendo diretório de cache do Composer
+        id: composer-cache
+        working-directory: ./application/backend
+        run: echo "COMPOSER_CACHE_DIR=$(composer config cache-dir)" >> $GITHUB_ENV
 
-  #     - name: Analisando cache do Composer
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ${{ env.COMPOSER_CACHE_DIR }}
-  #         key: ${{ runner.os }}-composer-${{ hashFiles('application/backend/composer.lock') }}
-  #         restore-keys: ${{ runner.os }}-composer-
+      - name: Analisando cache do Composer
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.COMPOSER_CACHE_DIR }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('application/backend/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
-  #     - name: Instalado dependências via Composer
-  #       working-directory: ./application/backend
-  #       run: composer install --prefer-dist --no-interaction --no-progress
+      - name: Instalado dependências via Composer
+        working-directory: ./application/backend
+        run: composer install --prefer-dist --no-interaction --no-progress
 
-  #     - name: Criando arquivo .env para testes
-  #       working-directory: ./application/backend
-  #       run: |
-  #         cp .env.example .env
-  #         sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
-  #         sed -i 's/DB_DATABASE=.*/DB_DATABASE=:memory:/' .env # SQLite em memória
+      - name: Criando arquivo .env para testes
+        working-directory: ./application/backend
+        run: |
+          cp .env.example .env
+          sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
+          sed -i 's/DB_DATABASE=.*/DB_DATABASE=:memory:/' .env # SQLite em memória
 
-  #     - name: Gerando application key
-  #       working-directory: ./application/backend
-  #       run: php artisan key:generate
+      - name: Gerando application key
+        working-directory: ./application/backend
+        run: php artisan key:generate
 
-  #     - name: Executando migrações para testes
-  #       working-directory: ./application/backend
-  #       run: php artisan migrate --env=testing --force
+      - name: Executando migrações para testes
+        working-directory: ./application/backend
+        run: php artisan migrate --env=testing --force
 
-  #     - name: Executando Testes Laravel
-  #       working-directory: ./application/backend
-  #       run: php artisan test
+      - name: Executando Testes Laravel
+        working-directory: ./application/backend
+        run: php artisan test
 
   build_and_push_images:
-    # needs: run_tests
+    needs: run_tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
