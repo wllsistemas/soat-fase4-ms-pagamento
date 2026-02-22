@@ -9,7 +9,7 @@ namespace App\Providers;
 // use App\Signature\AuthServiceInterface;
 // use App\Signature\TokenServiceInterface;
 use Illuminate\Support\ServiceProvider;
-use PhpAmqpLib\Connection\AMQPStreamConnection;
+// use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 // use App\Domain\Entity\Servico\RepositorioInterface as ServicoRepository;
 // use App\Infrastructure\Repositories\ServicoEloquentRepository;
@@ -54,14 +54,14 @@ class AppServiceProvider extends ServiceProvider
         //     LaravelAuthService::class
         // );
 
-        $this->app->singleton('rabbitmq.connection', function () {
-            return new AMQPStreamConnection(
-                config('queue.connections.rabbitmq.hosts.0.host'),
-                config('queue.connections.rabbitmq.hosts.0.port'),
-                config('queue.connections.rabbitmq.hosts.0.user'),
-                config('queue.connections.rabbitmq.hosts.0.password')
-            );
-        });
+        // $this->app->singleton('rabbitmq.connection', function () {
+        //     return new AMQPStreamConnection(
+        //         config('queue.connections.rabbitmq.hosts.0.host'),
+        //         config('queue.connections.rabbitmq.hosts.0.port'),
+        //         config('queue.connections.rabbitmq.hosts.0.user'),
+        //         config('queue.connections.rabbitmq.hosts.0.password')
+        //     );
+        // });
     }
 
     public function boot(): void {}
