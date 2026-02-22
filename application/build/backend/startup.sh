@@ -14,8 +14,9 @@ chmod 777 /tmp/xdebug.log
 
 echo "📦 Instalando dependências"
 mkdir -p vendor
-composer install --optimize-autoloader || {
+composer install --optimize-autoloader -vvv 2>&1 || {
     echo "❌ Falha na instalação das dependências"
+    echo "Detalhes do erro acima."
     exit 1
 }
 
@@ -26,8 +27,6 @@ if [ ! -f .env ]; then
     echo "🔑 Gerando chave da aplicação"
     php artisan key:generate
 
-    # echo "🔑 Gerando chave do JWT"
-    # php artisan jwt:secret --force
 fi
 
 echo "🆙 Preparando banco de dados"

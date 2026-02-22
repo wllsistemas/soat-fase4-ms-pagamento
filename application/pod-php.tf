@@ -18,7 +18,7 @@ resource "kubernetes_deployment_v1" "soat_php_pagamento" {
       spec {
         container {
           name  = "soat-php-pagamento"
-          image = "wllsistemas/php_lab_fase4:pagamento-v1"
+          image = "wllsistemas/php_lab_fase4:pagamento-v6"
           port {
             container_port = 9000
           }
@@ -107,12 +107,12 @@ resource "kubernetes_deployment_v1" "soat_php_pagamento" {
 
           env {
             name  = "DD_TRACE_DEBUG"
-            value = "true"
+            value = "false"
           }
 
           env {
             name  = "DD_TRACE_LOG_LEVEL"
-            value = "debug"
+            value = "error"
           }
 
           env {

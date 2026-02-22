@@ -33,7 +33,9 @@ RUN curl -fsSL https://github.com/DataDog/dd-trace-php/releases/latest/download/
     && rm -f /tmp/datadog-setup.php \
     && php --ri ddtrace | head -n 3
 
-RUN pecl install mongodb && docker-php-ext-enable mongodb && docker-php-ext-install sockets && docker-php-ext-enable sockets
+RUN docker-php-ext-install pdo_pgsql && docker-php-ext-enable pdo_pgsql && docker-php-ext-install sockets && docker-php-ext-enable sockets
+
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 # Limpa deps de build no final
 RUN apk del .build-deps \
