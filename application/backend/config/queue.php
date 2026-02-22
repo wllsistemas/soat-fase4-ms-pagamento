@@ -72,21 +72,21 @@ return [
             'after_commit' => false,
         ],
 
-        'rabbitmq' => [
-            'driver' => 'rabbitmq',
-            'hosts' => [
-                [
-                    'host'     => env('RABBITMQ_HOST', 'rabbitmq.rabbitmq'),
-                    'port'     => env('RABBITMQ_PORT', 5672),
-                    'user'     => env('RABBITMQ_USER', 'soat'),
-                    'password' => env('RABBITMQ_PASSWORD', 'soat2025'),
-                    'vhost'    => env('RABBITMQ_VHOST', '/'),
-                ],
-                // ...
-            ],
+        // 'rabbitmq' => [
+        //     'driver' => 'rabbitmq',
+        //     'hosts' => [
+        //         [
+        //             'host'     => env('RABBITMQ_HOST', 'rabbitmq.rabbitmq'),
+        //             'port'     => env('RABBITMQ_PORT', 5672),
+        //             'user'     => env('RABBITMQ_USER', 'soat'),
+        //             'password' => env('RABBITMQ_PASSWORD', 'soat2025'),
+        //             'vhost'    => env('RABBITMQ_VHOST', '/'),
+        //         ],
+        //         // ...
+        //     ],
 
-            'options' => []
-        ],
+        //     'options' => []
+        // ],
     ],
 
     /*
