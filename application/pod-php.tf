@@ -18,7 +18,7 @@ resource "kubernetes_deployment_v1" "soat_php_pagamento" {
       spec {
         container {
           name  = "soat-php-pagamento"
-          image = "wllsistemas/php_lab_fase4:pagamento-v1"
+          image = "wllsistemas/php_lab_fase4:pagamento-v6"
           port {
             container_port = 9000
           }
@@ -49,52 +49,7 @@ resource "kubernetes_deployment_v1" "soat_php_pagamento" {
               }
             }
           }
-          env {
-            name = "DB_HOST"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_HOST"
-              }
-            }
-          }
-          env {
-            name = "DB_NAME"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_NAME"
-              }
-            }
-          }
-          env {
-            name = "DB_PASSWORD"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_PASSWORD"
-              }
-            }
-          }
-          env {
-            name = "DB_USERNAME"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_USERNAME"
-              }
-            }
-          }
-          env {
-            name = "DB_PORT"
-            value_from {
-              secret_key_ref {
-                name = "soat-pagamento-secret"
-                key  = "DB_PORT"
-              }
-            }
-          }
-
+        
           # Datadog APM (dd-trace-php)
           env {
             name = "DD_AGENT_HOST"
@@ -152,12 +107,12 @@ resource "kubernetes_deployment_v1" "soat_php_pagamento" {
 
           env {
             name  = "DD_TRACE_DEBUG"
-            value = "true"
+            value = "false"
           }
 
           env {
             name  = "DD_TRACE_LOG_LEVEL"
-            value = "debug"
+            value = "error"
           }
 
           env {
