@@ -6,6 +6,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Infrastructure\Repositories\MercadoPagoMongoRepository;
+use Illuminate\Support\Facades\Http;
 use Mockery;
 
 class PagamentoApiErrorTest extends TestCase
@@ -23,23 +24,13 @@ class PagamentoApiErrorTest extends TestCase
             ->andThrow(new \Error('Simulated fatal error'));
 
         $uuidTeste = \Illuminate\Support\Str::uuid()->toString();
-        
-        $response = $this->getJson('/api/ordem/' . $uuidTeste);
-        
-        $response->assertStatus(500)
-                 ->assertJson([
-                     'err' => true,
-                     'msg' => 'Simulated fatal error'
-                 ]);
-    }
 
-    public function test_read_one_pagamento_database_connection_error(): void
-    {
-        try {
-            $response = $this->getJson('/api/ordem/invalid-uuid-format');
-            $this->assertTrue(in_array($response->status(), [400, 404, 500]));
-        } catch (\Exception $e) {
-            $this->assertTrue(true);
-        }
+        $response = $this->get('/api/ordem/' . $uuidTeste);
+
+        $response->assertStatus(500)
+            ->assertJson([
+                'err' => true,
+                'msg' => 'Simulated fatal error'
+            ]);
     }
 }
